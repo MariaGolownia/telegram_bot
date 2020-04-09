@@ -2,12 +2,13 @@ package com.telegram.citybot.entity;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table (name = "city_info")
 @ToString(of = {"id", "city", "info"})
 @EqualsAndHashCode(of = {"id"})
-public class CityInfo {
+public class CityInfo implements Serializable {
 
     @Id
     @Column(name = "id")
