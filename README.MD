@@ -1,5 +1,19 @@
 ------------------------------------------------------------------------------------------------------------------------
-Console usability:
+Description of bot
+------------------------------------------------------------------------------------------------------------------------
+You will find "citybot" at t.me/cityInfo2020_bot.
+
+telegram.bot.name=telegramCityInfoBot
+telegram.bot.username=cityInfo2020_bot
+telegram.bot.token=928935781:AAHspGUY5vBo-WMlpoLxD0W2prT03tTin10
+------------------------------------------------------------------------------------------------------------------------
+Description of bot's creating
+------------------------------------------------------------------------------------------------------------------------
+The bot is created through the BotFather (Telegram) bot:
+execute the command "/ start";
+execute the command "/ newbot";
+------------------------------------------------------------------------------------------------------------------------
+Console usability for GOOGLE CHROME:
 ------------------------------------------------------------------------------------------------------------------------
 // GET all
 fetch('/info/').then(response => response.json().then(console.log))

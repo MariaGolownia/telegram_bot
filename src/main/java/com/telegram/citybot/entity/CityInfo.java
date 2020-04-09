@@ -51,4 +51,11 @@ public class CityInfo implements Serializable {
         this.info = info;
     }
 
+    @Override
+    public String toString() {
+        return "Идентификационный номер города: " + id + " (справочно),\n" +
+                "Название: " + city +
+                ",\nПерсональная заметка для Вас:\n" + info + "" +
+                "\n\nЗамечательного отдыха!";
+    }
 }
