@@ -6,6 +6,7 @@ import com.telegram.citybot.repo.CityInfoRepo;
 import com.telegram.citybot.service.TelegramBotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -33,6 +34,7 @@ public class CityInfoTelegramMessageHandler implements TelegramMessageHandler {
     @Override
     public void handle(Update update) throws TelegramApiException {
         if (update.getMessage().getText().startsWith(TelegramBotService.INFO_ABOUT_BOT_BUTTON)
+                || update.getMessage().getText().startsWith(TelegramBotService.RANDOM_CITY_BUTTON)
                 || update.getMessage().getText().startsWith(TelegramBotService.START_COMMAND)) {
             return;
         }
@@ -69,4 +71,5 @@ public class CityInfoTelegramMessageHandler implements TelegramMessageHandler {
             throw new TelegramApiException("Communication error with the bot!");
         }
     }
+
 }

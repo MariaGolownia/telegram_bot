@@ -18,10 +18,11 @@ import java.util.List;
 public class TelegramBotService extends TelegramLongPollingBot {
 
     public static final String START_COMMAND = "/start";
-    public static final String INFO_ABOUT_BOT_BUTTON = "Инфо";
+    public static final String INFO_ABOUT_BOT_BUTTON = "Info about bot";
+    public static final String RANDOM_CITY_BUTTON = "Random city";
 
-//    String botUsername = "cityInfo2020_bot";
-//    String botToken = "928935781:AAHspGUY5vBo-WMlpoLxD0W2prT03tTin10";
+    //    String botUsername = "cityInfo2020_bot";
+//    String botToken = "928B935781:AAHspGUY5vBo-WMlpoLxD0W2prT03tTin10";
     @Value("${telegram.bot.username}")
     String botUsername;
     @Value("${telegram.bot.token}")
@@ -47,12 +48,19 @@ public class TelegramBotService extends TelegramLongPollingBot {
                     try {
                         handler.handle(update);
                     } catch (TelegramApiException e) {
+                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }
         );
     }
 
+    /**
+     * Метод для настройки сообщения и его отправки.
+     *
+     * @param chatId id чата
+     * @param text   cтрока, которую необходимот отправить в качестве сообщения.
+     */
     public synchronized void sendTextMessage(Long chatId, String text) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
@@ -62,6 +70,7 @@ public class TelegramBotService extends TelegramLongPollingBot {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -79,6 +88,7 @@ public class TelegramBotService extends TelegramLongPollingBot {
         // Будем работать с одним рядом
         KeyboardRow keyboardFirstRow = new KeyboardRow();
         keyboardFirstRow.add(new KeyboardButton(INFO_ABOUT_BOT_BUTTON));
+        keyboardFirstRow.add(new KeyboardButton(RANDOM_CITY_BUTTON));
         keyboard.add(keyboardFirstRow);
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;
