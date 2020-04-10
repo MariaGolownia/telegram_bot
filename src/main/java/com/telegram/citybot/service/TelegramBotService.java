@@ -1,5 +1,6 @@
 package com.telegram.citybot.service;
 import com.telegram.citybot.handler.TelegramMessageHandler;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -13,7 +14,11 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
+import static org.telegram.telegrambots.meta.logging.BotLogger.log;
+
+@Log4j2
 @Component
 public class TelegramBotService extends TelegramLongPollingBot {
 
@@ -48,8 +53,7 @@ public class TelegramBotService extends TelegramLongPollingBot {
                     try {
                         handler.handle(update);
                     } catch (TelegramApiException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        log(Level.SEVERE, "Exception: ", e.toString());
                     }
                 }
         );
@@ -70,8 +74,7 @@ public class TelegramBotService extends TelegramLongPollingBot {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            log(Level.SEVERE, "Exception: ", e.toString());
         }
     }
 

@@ -53,7 +53,10 @@ public class CityInfoTelegramMessageHandler implements TelegramMessageHandler {
             //Отправляем сообщение
             //execute(outMessage);
             Long chatId = update.getMessage().getChatId();
-            List<CityInfo> cityInfoList = cityInfoRepo.findByCity(update.getMessage().getText());
+            String nameCityFromUser = update.getMessage().getText().toLowerCase().trim();
+            String nameCityFromUserFormat = nameCityFromUser.substring(0, 1).toUpperCase();
+            nameCityFromUserFormat = nameCityFromUserFormat + nameCityFromUser.substring(1);
+            List<CityInfo> cityInfoList = cityInfoRepo.findByCity(nameCityFromUserFormat);
 
             if (cityInfoList == null || cityInfoList.size() == 0) {
                 telegramBotService.sendTextMessage(chatId, MESSAGE_CITY_NOT_FOUND);
